@@ -40,6 +40,11 @@ public class KonversiSuhuFrame extends javax.swing.JFrame {
 
         jLabel1.setText("Input Suhu");
 
+        inputSuhu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inputSuhuActionPerformed(evt);
+            }
+        });
         inputSuhu.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 inputSuhuKeyTyped(evt);
@@ -170,40 +175,29 @@ public class KonversiSuhuFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-private void konversiSuhu() {
-    try {
-        double nilaiSuhu = Double.parseDouble(inputSuhu.getText());
-        String skalaAwal = rbAsalKeTujuan.isSelected() ? (String) skalaAsal.getSelectedItem() : (String) skalaTujuan.getSelectedItem();
-        String skalaAkhir = rbAsalKeTujuan.isSelected() ? (String) skalaTujuan.getSelectedItem() : (String) skalaAsal.getSelectedItem();
+    private double konversiSuhu(double input, String from, String to) {
+        double result = input;
 
-        double hasil = 0.0;
-        if (skalaAwal.equals("Celcius")) {
-            if (skalaAkhir.equals("Fahrenheit")) hasil = nilaiSuhu * 9/5 + 32;
-            else if (skalaAkhir.equals("Reamur")) hasil = nilaiSuhu * 4/5;
-            else if (skalaAkhir.equals("Kelvin")) hasil = nilaiSuhu + 273.15;
-            else hasil = nilaiSuhu;
-        } else if (skalaAwal.equals("Fahrenheit")) {
-            if (skalaAkhir.equals("Celcius")) hasil = (nilaiSuhu - 32) * 5/9;
-            else if (skalaAkhir.equals("Reamur")) hasil = (nilaiSuhu - 32) * 4/9;
-            else if (skalaAkhir.equals("Kelvin")) hasil = (nilaiSuhu - 32) * 5/9 + 273.15;
-            else hasil = nilaiSuhu;
-        } else if (skalaAwal.equals("Reamur")) {
-            if (skalaAkhir.equals("Celcius")) hasil = nilaiSuhu * 5/4;
-            else if (skalaAkhir.equals("Fahrenheit")) hasil = nilaiSuhu * 9/4 + 32;
-            else if (skalaAkhir.equals("Kelvin")) hasil = nilaiSuhu * 5/4 + 273.15;
-            else hasil = nilaiSuhu;
-        } else if (skalaAwal.equals("Kelvin")) {
-            if (skalaAkhir.equals("Celcius")) hasil = nilaiSuhu - 273.15;
-            else if (skalaAkhir.equals("Fahrenheit")) hasil = (nilaiSuhu - 273.15) * 9/5 + 32;
-            else if (skalaAkhir.equals("Reamur")) hasil = (nilaiSuhu - 273.15) * 4/5;
-            else hasil = nilaiSuhu;
+        if (from.equals("Celcisus")) {
+            if (to.equals("Fahrenheit")) result = input * 9/5 + 32;
+            else if (to.equals("Reamur")) result = input * 4/5;
+            else if (to.equals("Kelvin")) result = input + 273.15;
+        } else if (from.equals("Fahrenheit")) {
+            if (to.equals("Celcisus")) result = (input - 32) * 5/9;
+            else if (to.equals("Reamur")) result = (input - 32) * 4/9;
+            else if (to.equals("Kelvin")) result = (input - 32) * 5/9 + 273.15;
+        } else if (from.equals("Reamur")) {
+            if (to.equals("Celcisus")) result = input * 5/4;
+            else if (to.equals("Fahrenheit")) result = input * 9/4 + 32;
+            else if (to.equals("Kelvin")) result = input * 5/4 + 273.15;
+        } else if (from.equals("Kelvin")) {
+            if (to.equals("Celcisus")) result = input - 273.15;
+            else if (to.equals("Fahrenheit")) result = (input - 273.15) * 9/5 + 32;
+            else if (to.equals("Reamur")) result = (input - 273.15) * 4/5;
         }
 
-        hasilTextField.setText(String.format("%.2f", hasil));
-    } catch (NumberFormatException ex) {
-        JOptionPane.showMessageDialog(this, "Input tidak valid! Masukkan angka saja.");
+        return result;
     }
-}    
     
     
     private void inputSuhuKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputSuhuKeyTyped
@@ -211,25 +205,25 @@ private void konversiSuhu() {
     if (!Character.isDigit(c) && c != '.') {
         evt.consume();
 }
-inputSuhu.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
-    public void insertUpdate(javax.swing.event.DocumentEvent e) { konversiSuhu(); }
-    public void removeUpdate(javax.swing.event.DocumentEvent e) { konversiSuhu(); }
-    public void changedUpdate(javax.swing.event.DocumentEvent e) { konversiSuhu(); }
-});
+
 
     }//GEN-LAST:event_inputSuhuKeyTyped
 
     private void rbAsalKeTujuanItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_rbAsalKeTujuanItemStateChanged
-        konversiSuhu();
+
     }//GEN-LAST:event_rbAsalKeTujuanItemStateChanged
 
     private void rbTujuanKeAsalItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_rbTujuanKeAsalItemStateChanged
-        konversiSuhu();
+
     }//GEN-LAST:event_rbTujuanKeAsalItemStateChanged
 
     private void btnKonversiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKonversiActionPerformed
-        konversiSuhu();
+  
     }//GEN-LAST:event_btnKonversiActionPerformed
+
+    private void inputSuhuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputSuhuActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_inputSuhuActionPerformed
 
     /**
      * @param args the command line arguments
