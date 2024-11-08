@@ -157,6 +157,42 @@ public class KonversiSuhuFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+private void konversiSuhu() {
+    try {
+        double nilaiSuhu = Double.parseDouble(inputSuhu.getText());
+        String skalaAwal = rbAsalKeTujuan.isSelected() ? (String) skalaAsal.getSelectedItem() : (String) skalaTujuan.getSelectedItem();
+        String skalaAkhir = rbAsalKeTujuan.isSelected() ? (String) skalaTujuan.getSelectedItem() : (String) skalaAsal.getSelectedItem();
+
+        double hasil = 0.0;
+        if (skalaAwal.equals("Celcius")) {
+            if (skalaAkhir.equals("Fahrenheit")) hasil = nilaiSuhu * 9/5 + 32;
+            else if (skalaAkhir.equals("Reamur")) hasil = nilaiSuhu * 4/5;
+            else if (skalaAkhir.equals("Kelvin")) hasil = nilaiSuhu + 273.15;
+            else hasil = nilaiSuhu;
+        } else if (skalaAwal.equals("Fahrenheit")) {
+            if (skalaAkhir.equals("Celcius")) hasil = (nilaiSuhu - 32) * 5/9;
+            else if (skalaAkhir.equals("Reamur")) hasil = (nilaiSuhu - 32) * 4/9;
+            else if (skalaAkhir.equals("Kelvin")) hasil = (nilaiSuhu - 32) * 5/9 + 273.15;
+            else hasil = nilaiSuhu;
+        } else if (skalaAwal.equals("Reamur")) {
+            if (skalaAkhir.equals("Celcius")) hasil = nilaiSuhu * 5/4;
+            else if (skalaAkhir.equals("Fahrenheit")) hasil = nilaiSuhu * 9/4 + 32;
+            else if (skalaAkhir.equals("Kelvin")) hasil = nilaiSuhu * 5/4 + 273.15;
+            else hasil = nilaiSuhu;
+        } else if (skalaAwal.equals("Kelvin")) {
+            if (skalaAkhir.equals("Celcius")) hasil = nilaiSuhu - 273.15;
+            else if (skalaAkhir.equals("Fahrenheit")) hasil = (nilaiSuhu - 273.15) * 9/5 + 32;
+            else if (skalaAkhir.equals("Reamur")) hasil = (nilaiSuhu - 273.15) * 4/5;
+            else hasil = nilaiSuhu;
+        }
+
+        hasilTextField.setText(String.format("%.2f", hasil));
+    } catch (NumberFormatException ex) {
+        JOptionPane.showMessageDialog(this, "Input tidak valid! Masukkan angka saja.");
+    }
+}    
+    
+    
     private void inputSuhuKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputSuhuKeyTyped
     char c = evt.getKeyChar();
     if (!Character.isDigit(c) && c != '.') {
@@ -231,39 +267,5 @@ inputSuhu.getDocument().addDocumentListener(new javax.swing.event.DocumentListen
     private javax.swing.JComboBox<String> skalaTujuan;
     // End of variables declaration//GEN-END:variables
 
-private void konversiSuhu() {
-    try {
-        double nilaiSuhu = Double.parseDouble(inputSuhu.getText());
-        String skalaAwal = rbAsalKeTujuan.isSelected() ? (String) skalaAsal.getSelectedItem() : (String) skalaTujuan.getSelectedItem();
-        String skalaAkhir = rbAsalKeTujuan.isSelected() ? (String) skalaTujuan.getSelectedItem() : (String) skalaAsal.getSelectedItem();
-
-        double hasil = 0.0;
-        if (skalaAwal.equals("Celsius")) {
-            if (skalaAkhir.equals("Fahrenheit")) hasil = nilaiSuhu * 9/5 + 32;
-            else if (skalaAkhir.equals("Reamur")) hasil = nilaiSuhu * 4/5;
-            else if (skalaAkhir.equals("Kelvin")) hasil = nilaiSuhu + 273.15;
-            else hasil = nilaiSuhu;
-        } else if (skalaAwal.equals("Fahrenheit")) {
-            if (skalaAkhir.equals("Celsius")) hasil = (nilaiSuhu - 32) * 5/9;
-            else if (skalaAkhir.equals("Reamur")) hasil = (nilaiSuhu - 32) * 4/9;
-            else if (skalaAkhir.equals("Kelvin")) hasil = (nilaiSuhu - 32) * 5/9 + 273.15;
-            else hasil = nilaiSuhu;
-        } else if (skalaAwal.equals("Reamur")) {
-            if (skalaAkhir.equals("Celsius")) hasil = nilaiSuhu * 5/4;
-            else if (skalaAkhir.equals("Fahrenheit")) hasil = nilaiSuhu * 9/4 + 32;
-            else if (skalaAkhir.equals("Kelvin")) hasil = nilaiSuhu * 5/4 + 273.15;
-            else hasil = nilaiSuhu;
-        } else if (skalaAwal.equals("Kelvin")) {
-            if (skalaAkhir.equals("Celsius")) hasil = nilaiSuhu - 273.15;
-            else if (skalaAkhir.equals("Fahrenheit")) hasil = (nilaiSuhu - 273.15) * 9/5 + 32;
-            else if (skalaAkhir.equals("Reamur")) hasil = (nilaiSuhu - 273.15) * 4/5;
-            else hasil = nilaiSuhu;
-        }
-
-        hasilTextField.setText(String.format("%.2f", hasil));
-    } catch (NumberFormatException ex) {
-        JOptionPane.showMessageDialog(this, "Input tidak valid! Masukkan angka saja.");
-    }
-}
 
 }
