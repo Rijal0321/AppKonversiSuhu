@@ -35,6 +35,12 @@ public class KonversiSuhuFrame extends javax.swing.JFrame {
 
         jLabel1.setText("Input Suhu");
 
+        inputSuhu.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputSuhuKeyTyped(evt);
+            }
+        });
+
         skalaAsal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Celcisus", "Fahrenheit", "Reamur", "Kelvin" }));
 
         skalaTujuan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Celcisus", "Fahrenheit", "Reamur", "Kelvin" }));
@@ -132,6 +138,14 @@ public class KonversiSuhuFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void inputSuhuKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputSuhuKeyTyped
+    char c = evt.getKeyChar();
+    if (!Character.isDigit(c) && c != '.') {
+        evt.consume();
+}
+
+    }//GEN-LAST:event_inputSuhuKeyTyped
 
     /**
      * @param args the command line arguments
