@@ -9,6 +9,18 @@ public class KonversiSuhuFrame extends javax.swing.JFrame {
      */
     public KonversiSuhuFrame() {
         initComponents();
+        
+        inputSuhu.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
+        public void insertUpdate(javax.swing.event.DocumentEvent evt) {
+            konversiOtomatis();
+        }
+        public void removeUpdate(javax.swing.event.DocumentEvent evt) {
+            konversiOtomatis();
+        }
+        public void changedUpdate(javax.swing.event.DocumentEvent evt) {
+            konversiOtomatis();
+        }
+    });
     }
 
     /**
@@ -40,11 +52,6 @@ public class KonversiSuhuFrame extends javax.swing.JFrame {
 
         jLabel1.setText("Input Suhu");
 
-        inputSuhu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                inputSuhuActionPerformed(evt);
-            }
-        });
         inputSuhu.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 inputSuhuKeyTyped(evt);
@@ -218,6 +225,29 @@ public class KonversiSuhuFrame extends javax.swing.JFrame {
             default: return "";
         }
     }    
+   
+private void konversiOtomatis() {
+    try {
+        if (!inputSuhu.getText().isEmpty()) {
+            double input = Double.parseDouble(inputSuhu.getText());
+            String fromScale = skalaAsal.getSelectedItem().toString();
+            String toScale = skalaTujuan.getSelectedItem().toString();
+
+            if (rbAsalKeTujuan.isSelected()) {
+                double result = konversiSuhu(input, fromScale, toScale);
+                hasilTextField.setText(String.format("%.2f %s", result, getSymbol(toScale)));
+            } else if (rbTujuanKeAsal.isSelected()) {
+                double result = konversiSuhu(input, toScale, fromScale);
+                hasilTextField.setText(String.format("%.2f %s", result, getSymbol(fromScale)));
+            }
+        } else {
+            hasilTextField.setText("");
+        }
+    } catch (NumberFormatException ex) {
+        hasilTextField.setText("");
+    }
+}
+   
     
     private void inputSuhuKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputSuhuKeyTyped
     char c = evt.getKeyChar();
@@ -260,10 +290,6 @@ public class KonversiSuhuFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Masukkan angka yang valid!", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnKonversiActionPerformed
-
-    private void inputSuhuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputSuhuActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_inputSuhuActionPerformed
 
     private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
         inputSuhu.setText("");
