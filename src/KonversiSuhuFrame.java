@@ -242,7 +242,23 @@ public class KonversiSuhuFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_rbTujuanKeAsalItemStateChanged
 
     private void btnKonversiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKonversiActionPerformed
-  
+            try {
+            double input = Double.parseDouble(inputSuhu.getText());
+            String fromScale = skalaAsal.getSelectedItem().toString();
+            String toScale = skalaTujuan.getSelectedItem().toString();
+            
+            if (rbAsalKeTujuan.isSelected()) {
+                double result = konversiSuhu(input, fromScale, toScale);
+                hasilTextField.setText(String.format("%.2f %s", result, getSymbol(toScale)));
+            } else if (rbTujuanKeAsal.isSelected()) {
+                double result = konversiSuhu (input, toScale, fromScale);
+                hasilTextField.setText(String.format("%.2f %s", result, getSymbol(fromScale)));
+            } else {
+                JOptionPane.showMessageDialog(this, "Pilih arah konversi!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+            }
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, "Masukkan angka yang valid!", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnKonversiActionPerformed
 
     private void inputSuhuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputSuhuActionPerformed
