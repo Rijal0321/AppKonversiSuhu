@@ -47,9 +47,19 @@ public class KonversiSuhuFrame extends javax.swing.JFrame {
 
         buttonGroup1.add(rbAsalKeTujuan);
         rbAsalKeTujuan.setText("Dari Asal ke Tujuan");
+        rbAsalKeTujuan.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                rbAsalKeTujuanItemStateChanged(evt);
+            }
+        });
 
         buttonGroup1.add(rbTujuanKeAsal);
         rbTujuanKeAsal.setText("Dari Tujuan ke Asal");
+        rbTujuanKeAsal.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                rbTujuanKeAsalItemStateChanged(evt);
+            }
+        });
 
         jLabel2.setText("Hasil Konversi");
 
@@ -146,6 +156,14 @@ public class KonversiSuhuFrame extends javax.swing.JFrame {
 }
 
     }//GEN-LAST:event_inputSuhuKeyTyped
+
+    private void rbAsalKeTujuanItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_rbAsalKeTujuanItemStateChanged
+        konversiSuhu();
+    }//GEN-LAST:event_rbAsalKeTujuanItemStateChanged
+
+    private void rbTujuanKeAsalItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_rbTujuanKeAsalItemStateChanged
+        konversiSuhu();
+    }//GEN-LAST:event_rbTujuanKeAsalItemStateChanged
 
     /**
      * @param args the command line arguments
