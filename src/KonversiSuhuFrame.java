@@ -67,6 +67,11 @@ public class KonversiSuhuFrame extends javax.swing.JFrame {
         jLabel2.setText("Hasil Konversi");
 
         btnKonversi.setText("Konversi");
+        btnKonversi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnKonversiActionPerformed(evt);
+            }
+        });
 
         hasilTextField.setEditable(false);
 
@@ -172,6 +177,10 @@ inputSuhu.getDocument().addDocumentListener(new javax.swing.event.DocumentListen
     private void rbTujuanKeAsalItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_rbTujuanKeAsalItemStateChanged
         konversiSuhu();
     }//GEN-LAST:event_rbTujuanKeAsalItemStateChanged
+
+    private void btnKonversiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKonversiActionPerformed
+        konversiSuhu();
+    }//GEN-LAST:event_btnKonversiActionPerformed
 
     /**
      * @param args the command line arguments
