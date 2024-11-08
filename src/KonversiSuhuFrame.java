@@ -1,4 +1,7 @@
 
+import javax.swing.JOptionPane;
+
+
 public class KonversiSuhuFrame extends javax.swing.JFrame {
 
     /**
