@@ -208,7 +208,16 @@ public class KonversiSuhuFrame extends javax.swing.JFrame {
 
         return result;
     }
-    
+
+   private String getSymbol(String scale) {
+        switch (scale) {
+            case "Celcisus": return "°C";
+            case "Fahrenheit": return "°F";
+            case "Reamur": return "°Ré";
+            case "Kelvin": return "K";
+            default: return "";
+        }
+    }    
     
     private void inputSuhuKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputSuhuKeyTyped
     char c = evt.getKeyChar();
