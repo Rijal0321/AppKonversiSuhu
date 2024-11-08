@@ -210,11 +210,11 @@ public class KonversiSuhuFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_inputSuhuKeyTyped
 
     private void rbAsalKeTujuanItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_rbAsalKeTujuanItemStateChanged
-
+         hasilTextField.setText("");
     }//GEN-LAST:event_rbAsalKeTujuanItemStateChanged
 
     private void rbTujuanKeAsalItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_rbTujuanKeAsalItemStateChanged
-
+        hasilTextField.setText("");
     }//GEN-LAST:event_rbTujuanKeAsalItemStateChanged
 
     private void btnKonversiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKonversiActionPerformed
